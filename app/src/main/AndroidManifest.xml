@@ -17,6 +17,14 @@
                     android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.example.pellesam.outerspacemanager.MainActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.pellesam.outerspacemanager.BuildingActivity"
+            android:label="@string/app_name" >
+        </activity>
 
     </application>
     <uses-permission android:name="android.permission.INTERNET" />

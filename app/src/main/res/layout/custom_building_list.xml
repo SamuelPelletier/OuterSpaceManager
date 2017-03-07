@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:background="@android:color/black">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="285dp"
+        android:layout_height="match_parent"
+        android:weightSum="1"
+        android:background="@android:color/black"
+        android:layout_marginLeft="20dp">
+
+        <TextView
+            android:text="Name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/name"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="50dp" />
+
+        <TextView
+            android:text="Effet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/effect"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="10dp" />
+
+        <TextView
+            android:text="Cout en gas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/gasCost"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="10dp" />
+
+        <TextView
+            android:text="Cout en mineraux"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/mineralCost"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="10dp" />
+
+        <TextView
+            android:text="Temps de construction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/timeToBuild"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="10dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/black"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView11"
+            android:layout_weight="0.53" />
+
+        <TextView
+            android:text="Level"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/level"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:text="Construire"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/build"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+
+</LinearLayout>

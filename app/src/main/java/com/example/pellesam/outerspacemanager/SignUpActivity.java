@@ -24,7 +24,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SignUpActivity extends Activity implements View.OnClickListener{
 
-    private Button btnValider;
+    private Button btnCreate;
+    private Button btnConnect;
     private EditText fieldId;
     private EditText fieldPassword;
 
@@ -37,10 +38,11 @@ public class SignUpActivity extends Activity implements View.OnClickListener{
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-        btnValider = (Button) findViewById(R.id.buttonValidate);
+        btnCreate = (Button) findViewById(R.id.buttonCreate);
+        btnConnect = (Button) findViewById(R.id.buttonConnect);
         fieldId = (EditText) findViewById(R.id.FieldId);
         fieldPassword = (EditText) findViewById(R.id.FieldPassword);
-        btnValider.setOnClickListener(new View.OnClickListener() {
+        btnCreate.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Retrofit retrofit = new Retrofit.Builder()
                         .baseUrl("https://outer-space-manager.herokuapp.com")
@@ -76,6 +78,44 @@ public class SignUpActivity extends Activity implements View.OnClickListener{
                 });
             }
         });
+
+        btnConnect.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl("https://outer-space-manager.herokuapp.com")
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+
+                OuterSpaceManager service = retrofit.create(OuterSpaceManager.class);
+                Call<User> request = service.connectUser(new User(fieldId.getText().toString(), fieldPassword.getText().toString()));
+                request.enqueue(new Callback<User>() {
+                    Context context = getApplicationContext();
+                    CharSequence text = "Erreur de connexion";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context, text, duration);
+
+                    @Override
+                    public void onResponse(Call<User> call, Response<User> response) {
+                        if(response.body() == null){
+                            toast.show();
+                        }else {
+                            SharedPreferences settings = getSharedPreferences("TOKEN", 0);
+                            SharedPreferences.Editor editor = settings.edit();
+                            editor.putString("tokenId", response.body().getToken());
+                            editor.commit();
+                            Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(myIntent);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<User> call, Throwable t) {
+                        toast.show();
+                    }
+                });
+            }
+        });
+
     }
 
     @Override

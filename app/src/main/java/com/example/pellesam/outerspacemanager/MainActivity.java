@@ -58,7 +58,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 username.setText(response.body().getUsername());
-                point.setText("Points: "+response.body().getPoint());
+                point.setText("Points: "+response.body().getPoints());
             }
 
             @Override

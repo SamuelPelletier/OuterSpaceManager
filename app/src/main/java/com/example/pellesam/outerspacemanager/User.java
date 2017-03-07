@@ -8,7 +8,7 @@ public class User {
     private String username;
     private String password;
     private String token;
-    private String point;
+    private Integer points;
 
     public User(String username, String password) {
         this.username = username;
@@ -23,7 +23,7 @@ public class User {
         return this.username;
     }
 
-    public String getPoint(){
-        return this.point;
+    public Integer getPoints(){
+        return this.points;
     }
 }

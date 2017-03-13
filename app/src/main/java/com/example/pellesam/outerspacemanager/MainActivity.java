@@ -98,7 +98,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
         spatialSite.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent myIntent = new Intent(getApplicationContext(), ShipActivity.class);
                 startActivity(myIntent);
             }
         });

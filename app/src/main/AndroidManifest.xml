@@ -37,6 +37,10 @@
             android:name="com.example.pellesam.outerspacemanager.SearchActivity"
             android:label="@string/app_name" >
         </activity>
+        <activity
+            android:name="com.example.pellesam.outerspacemanager.ShipActivity"
+            android:label="@string/app_name" >
+        </activity>
 
     </application>
     <uses-permission android:name="android.permission.INTERNET" />

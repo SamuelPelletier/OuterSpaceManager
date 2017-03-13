@@ -46,7 +46,6 @@ public class CustomAdaptaterViewShips extends ArrayAdapter<Ship> implements View
         final Button buttonBuild = (Button) rowView.findViewById(R.id.build);
 
         textViewName.setText(ships.get(position).getName());
-        textViewEffect.setText("Effet : "+ships.get(position).getAmountEffect());
         textViewGasCost.setText("Cout en gas : "+ships.get(position).getGasCost());
         textViewMineralCost.setText("Cout en minéraux : "+ships.get(position).getMineralCost());
         textViewTimeToBuild.setText("Temps de construction : "+ships.get(position).getTimeToBuild());

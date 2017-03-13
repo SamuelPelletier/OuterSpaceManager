@@ -1,9 +1,7 @@
 package com.example.pellesam.outerspacemanager;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,21 +18,18 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.example.pellesam.outerspacemanager.R.id.point;
-import static com.example.pellesam.outerspacemanager.R.id.username;
-
 /**
  * Created by mac14 on 07/03/2017.
  */
 
-public class CustomAdaptaterViewBuildings extends ArrayAdapter<Building> implements View.OnClickListener{
+public class CustomAdaptaterViewSearches extends ArrayAdapter<Search> implements View.OnClickListener{
 
     private final Context context;
-    private final ArrayList<Building> buildings;
-    public CustomAdaptaterViewBuildings(Context context, ArrayList<Building> buildings) {
-        super(context, R.layout.custom_building_list, buildings);
+    private final ArrayList<Search> searches;
+    public CustomAdaptaterViewSearches(Context context, ArrayList<Search> searches) {
+        super(context, R.layout.custom_search_list, searches);
         this.context = context;
-        this.buildings = buildings;
+        this.searches = searches;
     }
 
     @Override
@@ -50,16 +45,16 @@ public class CustomAdaptaterViewBuildings extends ArrayAdapter<Building> impleme
         TextView textViewLevel = (TextView) rowView.findViewById(R.id.level);
         final Button buttonBuild = (Button) rowView.findViewById(R.id.build);
 
-        textViewName.setText(buildings.get(position).getName());
-        textViewEffect.setText("Effet : "+buildings.get(position).getAmountEffect());
-        textViewGasCost.setText("Cout en gas : "+buildings.get(position).getGasCost());
-        textViewMineralCost.setText("Cout en minéraux : "+buildings.get(position).getMineralCost());
-        textViewTimeToBuild.setText("Temps de construction : "+buildings.get(position).getTimeToBuild());
-        if(buildings.get(position).isBuilding() || buildings.get(position).getLevel() > 1) {
+        textViewName.setText(searches.get(position).getName());
+        textViewEffect.setText("Effet : "+searches.get(position).getAmountEffect());
+        textViewGasCost.setText("Cout en gas : "+searches.get(position).getGasCost());
+        textViewMineralCost.setText("Cout en minéraux : "+searches.get(position).getMineralCost());
+        textViewTimeToBuild.setText("Temps de construction : "+searches.get(position).getTimeToBuild());
+        if(searches.get(position).isBuilding() || searches.get(position).getLevel() > 1) {
             buttonBuild.setText("Améliorer");
-            textViewLevel.setText(buildings.get(position).getLevel().toString());
+            textViewLevel.setText(searches.get(position).getLevel().toString());
         }else{
-            buttonBuild.setText("Construire");
+            buttonBuild.setText("Rechercher");
             textViewLevel.setVisibility(View.GONE);
         }
 
@@ -73,14 +68,14 @@ public class CustomAdaptaterViewBuildings extends ArrayAdapter<Building> impleme
                         .build();
 
                 OuterSpaceManager service = retrofit.create(OuterSpaceManager.class);
-                final Call<Building> request = service.constructBuilding(settings.getString("tokenId", "noToken"), position);
-                request.enqueue(new Callback<Building>() {
+                final Call<Search> request = service.doSearch(settings.getString("tokenId", "noToken"), position);
+                request.enqueue(new Callback<Search>() {
 
                     @Override
-                    public void onResponse(Call<Building> call, Response<Building> response) {
+                    public void onResponse(Call<Search> call, Response<Search> response) {
                         CharSequence text = "Echec de l'amélioration";
                         if(response.code() == 200) {
-                            text = "Batiment améliorer avec succés";
+                            text = "Recherche améliorer avec succés";
                         }
                         int duration = Toast.LENGTH_SHORT;
                         Toast toast = Toast.makeText(context, text, duration);
@@ -88,7 +83,7 @@ public class CustomAdaptaterViewBuildings extends ArrayAdapter<Building> impleme
                     }
 
                     @Override
-                    public void onFailure(Call<Building> call, Throwable t) {
+                    public void onFailure(Call<Search> call, Throwable t) {
                         CharSequence text = "Echec de l'amélioration";
                         int duration = Toast.LENGTH_SHORT;
                         Toast toast = Toast.makeText(context, text, duration);

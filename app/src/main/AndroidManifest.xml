@@ -25,6 +25,18 @@
             android:name="com.example.pellesam.outerspacemanager.BuildingActivity"
             android:label="@string/app_name" >
         </activity>
+        <activity
+            android:name="com.example.pellesam.outerspacemanager.GeneralActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.pellesam.outerspacemanager.GalaxyActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.pellesam.outerspacemanager.SearchActivity"
+            android:label="@string/app_name" >
+        </activity>
 
     </application>
     <uses-permission android:name="android.permission.INTERNET" />

@@ -9,6 +9,10 @@ public class User {
     private String password;
     private String token;
     private Integer points;
+    private Double gas;
+    private Integer gasModifier;
+    private Double minerals;
+    private Integer mineralsModifier;
 
     public User(String username, String password) {
         this.username = username;
@@ -25,5 +29,21 @@ public class User {
 
     public Integer getPoints(){
         return this.points;
+    }
+
+    public Double getGas() {
+        return gas;
+    }
+
+    public Integer getGasModifier() {
+        return gasModifier;
+    }
+
+    public Double getMinerals() {
+        return minerals;
+    }
+
+    public Integer getMineralsModifier() {
+        return mineralsModifier;
     }
 }

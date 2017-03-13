@@ -27,6 +27,13 @@ public interface OuterSpaceManager {
     @POST("/api/v1/buildings/create/{id}")
     Call<Building> constructBuilding(@Header("x-access-token") String token, @Path("id") Integer idBuilding);
 
+    @GET("/api/v1/users/{start}/{end}")
+    Call<Users> getUsers(@Header("x-access-token") String token, @Path("start") Integer start, @Path("end") Integer end);
 
+    @GET("/api/v1/searches/list")
+    Call<Searches> getSearches(@Header("x-access-token") String token);
+
+    @POST("/api/v1/searches/create/{id}")
+    Call<Search> doSearch(@Header("x-access-token") String token, @Path("id") Integer idSearch);
 
 }

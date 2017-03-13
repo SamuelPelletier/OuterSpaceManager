@@ -70,7 +70,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
         generalView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent myIntent = new Intent(getApplicationContext(), BuildingActivity.class);
+                Intent myIntent = new Intent(getApplicationContext(), GeneralActivity.class);
                 startActivity(myIntent);
             }
         });
@@ -91,7 +91,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
         search.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent myIntent = new Intent(getApplicationContext(), SearchActivity.class);
                 startActivity(myIntent);
             }
         });
@@ -105,7 +105,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
         galaxy.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent myIntent = new Intent(getApplicationContext(), GalaxyActivity.class);
                 startActivity(myIntent);
             }
         });

@@ -8,17 +8,55 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/black">
+        android:background="@android:color/black"
+        android:weightSum="1">
 
         <ListView
             android:layout_width="match_parent"
-            android:layout_height="467dp"
-            android:id="@+id/listView" />
+            android:layout_height="391dp"
+            android:id="@+id/listView"
+            android:layout_weight="1.04" />
 
-        <Button
-            android:text="Attaquer"
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/button" />
+            android:layout_height="99dp">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:text="Attaquer avec tout"
+                    android:layout_width="192dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/buttonFullAttack" />
+
+                <Button
+                    android:text="Attaque limité"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/buttonLimitedAttack"
+                    android:layout_weight="1"
+                    android:elevation="0dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:text="Sonder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/buttonProbe"
+                    android:layout_weight="0.61" />
+            </LinearLayout>
+
+        </LinearLayout>
+
     </LinearLayout>
 </LinearLayout>

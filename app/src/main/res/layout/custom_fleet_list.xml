@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,8 +9,8 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="344dp"
-        android:layout_height="114dp"
+        android:layout_width="176dp"
+        android:layout_height="152dp"
         android:weightSum="1"
         android:background="@android:color/black"
         android:layout_marginLeft="20dp">
@@ -20,32 +21,38 @@
             android:layout_height="wrap_content"
             android:id="@+id/name"
             android:textColor="@android:color/white"
-            android:layout_marginBottom="50dp"
-            android:textSize="20sp" />
+            android:layout_marginBottom="10dp"
+            android:textSize="20sp"
+            android:layout_weight="0.33"
+            android:layout_marginTop="10dp" />
 
-        <LinearLayout
-            android:orientation="horizontal"
+        <TextView
+            android:text="TextView"
             android:layout_width="match_parent"
-            android:layout_height="58dp"
-            android:weightSum="1"
-            android:background="@android:color/transparent">
+            android:layout_height="wrap_content"
+            android:id="@+id/number"
+            android:layout_weight="0.65"
+            android:textAlignment="center"
+            android:gravity="center_vertical"
+            android:textColor="@android:color/holo_orange_dark"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-smallcaps" />
 
-            <TextView
-                android:text="Nombre :"
-                android:layout_width="169dp"
-                android:layout_height="27dp"
-                android:textColor="@android:color/white"
-                android:layout_marginBottom="10dp"
-                android:textAlignment="center"
-                android:gravity="center_vertical" />
+    </LinearLayout>
 
-            <TextView
-                android:layout_width="168dp"
-                android:layout_height="33dp"
-                android:id="@+id/number"
-                android:textColor="@android:color/white" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="156dp"
+        android:weightSum="1">
 
-        </LinearLayout>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="145dp"
+            app:srcCompat="@color/colorAccent"
+            android:id="@+id/imageViewShip"
+            android:layout_margin="15dp" />
     </LinearLayout>
 
 

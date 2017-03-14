@@ -1,12 +1,13 @@
-package com.example.pellesam.outerspacemanager;
+package com.example.pellesam.outerspacemanager.Entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by mac14 on 07/03/2017.
  */
 
-public class Ships {
+public class Ships implements Serializable{
 
     private ArrayList<Ship> ships;
 

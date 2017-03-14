@@ -1,4 +1,4 @@
-package com.example.pellesam.outerspacemanager;
+package com.example.pellesam.outerspacemanager.Entity;
 
 /**
  * Created by mac14 on 07/03/2017.

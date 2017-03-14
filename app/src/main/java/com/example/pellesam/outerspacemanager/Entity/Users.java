@@ -1,4 +1,4 @@
-package com.example.pellesam.outerspacemanager;
+package com.example.pellesam.outerspacemanager.Entity;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.example.pellesam.outerspacemanager;
+package com.example.pellesam.outerspacemanager.MainActivity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,6 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.pellesam.outerspacemanager.Entity.User;
+import com.example.pellesam.outerspacemanager.R;
+import com.example.pellesam.outerspacemanager.Service.OuterSpaceManager;
 
 import retrofit2.Call;
 import retrofit2.Callback;

@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.example.pellesam.outerspacemanager.SignUpActivity"
+            android:name="com.example.pellesam.outerspacemanager.MainActivity.SignUpActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,31 +18,35 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.pellesam.outerspacemanager.MainActivity"
+            android:name="com.example.pellesam.outerspacemanager.MainActivity.MainActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.example.pellesam.outerspacemanager.BuildingActivity"
+            android:name="com.example.pellesam.outerspacemanager.MainActivity.BuildingActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.example.pellesam.outerspacemanager.GeneralActivity"
+            android:name="com.example.pellesam.outerspacemanager.MainActivity.GeneralActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.example.pellesam.outerspacemanager.GalaxyActivity"
+            android:name="com.example.pellesam.outerspacemanager.MainActivity.GalaxyActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.example.pellesam.outerspacemanager.SearchActivity"
+            android:name="com.example.pellesam.outerspacemanager.MainActivity.SearchActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.example.pellesam.outerspacemanager.ShipActivity"
+            android:name="com.example.pellesam.outerspacemanager.MainActivity.ShipActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.example.pellesam.outerspacemanager.FleetActivity"
+            android:name="com.example.pellesam.outerspacemanager.MainActivity.FleetActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.pellesam.outerspacemanager.MainActivity.AttackActivity"
             android:label="@string/app_name" >
         </activity>
 

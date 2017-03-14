@@ -1,4 +1,4 @@
-package com.example.pellesam.outerspacemanager;
+package com.example.pellesam.outerspacemanager.Entity;
 
 /**
  * Created by pellesam on 06/03/2017.

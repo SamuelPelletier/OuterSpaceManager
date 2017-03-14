@@ -8,53 +8,6 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/black">
-
-        <TextView
-            android:text="Minerals:"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView3"
-            android:layout_width="130dp"
-            android:textColorHighlight="@android:color/white"
-            android:textColor="@android:color/white" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:id="@+id/minerals"
-            android:textColorHighlight="@android:color/white"
-            android:textColor="@android:color/white" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/black">
-
-        <TextView
-            android:text="MineralsModifier:"
-            android:layout_width="130dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView12"
-            android:layout_weight="0.08"
-            android:textColorHighlight="@android:color/white"
-            android:textColor="@android:color/white" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/mineralsModifier"
-            android:layout_weight="0.87"
-            android:textColorHighlight="@android:color/white"
-            android:textColor="@android:color/white" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:weightSum="1"
         android:background="@android:color/black">
 
@@ -97,6 +50,53 @@
             android:layout_width="191dp"
             android:layout_height="wrap_content"
             android:id="@+id/gasModifier"
+            android:textColorHighlight="@android:color/white"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/black">
+
+        <TextView
+            android:text="Minerals:"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3"
+            android:layout_width="130dp"
+            android:textColorHighlight="@android:color/white"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/minerals"
+            android:textColorHighlight="@android:color/white"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/black">
+
+        <TextView
+            android:text="MineralsModifier:"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView12"
+            android:layout_weight="0.08"
+            android:textColorHighlight="@android:color/white"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/mineralsModifier"
+            android:layout_weight="0.87"
             android:textColorHighlight="@android:color/white"
             android:textColor="@android:color/white" />
     </LinearLayout>

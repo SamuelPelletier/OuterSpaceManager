@@ -1,14 +1,14 @@
-package com.example.pellesam.outerspacemanager;
+package com.example.pellesam.outerspacemanager.MainActivity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import com.example.pellesam.outerspacemanager.Entity.User;
+import com.example.pellesam.outerspacemanager.R;
+import com.example.pellesam.outerspacemanager.Service.OuterSpaceManager;
 
 import retrofit2.Call;
 import retrofit2.Callback;

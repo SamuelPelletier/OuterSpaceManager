@@ -1,11 +1,17 @@
-package com.example.pellesam.outerspacemanager;
+package com.example.pellesam.outerspacemanager.MainActivity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ListView;
-import android.widget.Toast;
+
+import com.example.pellesam.outerspacemanager.CustomActivity.CustomAdaptaterViewBuildings;
+import com.example.pellesam.outerspacemanager.Entity.Amount;
+import com.example.pellesam.outerspacemanager.Entity.Building;
+import com.example.pellesam.outerspacemanager.Entity.Buildings;
+import com.example.pellesam.outerspacemanager.R;
+import com.example.pellesam.outerspacemanager.Service.OuterSpaceManager;
 
 import java.util.ArrayList;
 
@@ -19,14 +25,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by mac14 on 07/03/2017.
  */
 
-public class FleetActivity extends Activity {
+public class BuildingActivity extends Activity {
 
     private ListView listView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fleet);
+        setContentView(R.layout.activity_building);
         listView = (ListView) findViewById(R.id.listView);
 
         SharedPreferences settings = getSharedPreferences("TOKEN", 0);
@@ -37,26 +43,17 @@ public class FleetActivity extends Activity {
                 .build();
 
         OuterSpaceManager service = retrofit.create(OuterSpaceManager.class);
-        final Call<Ships> request = service.getFleet(settings.getString("tokenId", "noToken"));
-        request.enqueue(new Callback<Ships>() {
+        final Call<Buildings> request = service.getBuilding(settings.getString("tokenId", "noToken"));
+        request.enqueue(new Callback<Buildings>() {
 
             @Override
-            public void onResponse(Call<Ships> call, Response<Ships> response) {
-                ArrayList<Ship> ships = response.body().getShips();
-                if(response.body().getNumberOfShip() > 0) {
-                    listView.setAdapter(new CustomAdaptaterViewShipsFleet(getApplicationContext(), ships));
-                }else{
-                    CharSequence text = "Vous n'avez pas de vaisseau :(";
-                    int duration = Toast.LENGTH_SHORT;
-                    Toast toast = Toast.makeText(getApplicationContext(), text, duration);
-                    toast.show();
-                    Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(myIntent);
-                }
+            public void onResponse(Call<Buildings> call, Response<Buildings> response) {
+                ArrayList<Building> buildings = response.body().getBuildings();
+                listView.setAdapter(new CustomAdaptaterViewBuildings(getApplicationContext(),buildings));
             }
 
             @Override
-            public void onFailure(Call<Ships> call, Throwable t) {
+            public void onFailure(Call<Buildings> call, Throwable t) {
                 Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(myIntent);
             }

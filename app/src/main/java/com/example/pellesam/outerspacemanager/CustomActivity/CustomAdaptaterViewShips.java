@@ -1,9 +1,8 @@
-package com.example.pellesam.outerspacemanager;
+package com.example.pellesam.outerspacemanager.CustomActivity;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +14,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.pellesam.outerspacemanager.Entity.Amount;
+import com.example.pellesam.outerspacemanager.Entity.Ship;
+import com.example.pellesam.outerspacemanager.R;
+import com.example.pellesam.outerspacemanager.Service.OuterSpaceManager;
 
 import java.util.ArrayList;
 
@@ -79,7 +82,7 @@ public class CustomAdaptaterViewShips extends ArrayAdapter<Ship> implements View
                 final Integer number = numberTemp;
 
                 if(number != 0) {
-                    final Call<Ship> request = service.createShip(settings.getString("tokenId", "noToken"), position, new Ship(number));
+                    final Call<Ship> request = service.createShip(settings.getString("tokenId", "noToken"), position, new Amount(number));
                     request.enqueue(new Callback<Ship>() {
 
                         @Override

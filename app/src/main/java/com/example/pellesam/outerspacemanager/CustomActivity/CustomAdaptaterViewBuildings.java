@@ -1,10 +1,8 @@
-package com.example.pellesam.outerspacemanager;
+package com.example.pellesam.outerspacemanager.CustomActivity;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +11,11 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.pellesam.outerspacemanager.Entity.Amount;
+import com.example.pellesam.outerspacemanager.Entity.Building;
+import com.example.pellesam.outerspacemanager.R;
+import com.example.pellesam.outerspacemanager.Service.OuterSpaceManager;
 
 import java.util.ArrayList;
 
@@ -23,8 +26,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import static android.view.View.GONE;
-import static com.example.pellesam.outerspacemanager.R.id.point;
-import static com.example.pellesam.outerspacemanager.R.id.username;
 
 /**
  * Created by mac14 on 07/03/2017.

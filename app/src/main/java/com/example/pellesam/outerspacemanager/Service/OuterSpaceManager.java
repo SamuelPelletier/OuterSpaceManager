@@ -1,5 +1,16 @@
-package com.example.pellesam.outerspacemanager;
+package com.example.pellesam.outerspacemanager.Service;
 
+import com.example.pellesam.outerspacemanager.Entity.Amount;
+import com.example.pellesam.outerspacemanager.Entity.Building;
+import com.example.pellesam.outerspacemanager.Entity.Buildings;
+import com.example.pellesam.outerspacemanager.Entity.Search;
+import com.example.pellesam.outerspacemanager.Entity.Searches;
+import com.example.pellesam.outerspacemanager.Entity.Ship;
+import com.example.pellesam.outerspacemanager.Entity.Ships;
+import com.example.pellesam.outerspacemanager.Entity.User;
+import com.example.pellesam.outerspacemanager.Entity.Users;
+
+import okhttp3.internal.Internal;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -40,9 +51,12 @@ public interface OuterSpaceManager {
     Call<Ships> getFleet(@Header("x-access-token") String token);
 
     @POST("/api/v1/ships/create/{id}")
-    Call<Ship> createShip(@Header("x-access-token") String token, @Path("id") Integer idShip, @Body Ship ship);
+    Call<Ship> createShip(@Header("x-access-token") String token, @Path("id") Integer idShip, @Body Amount amount);
 
     @GET("/api/v1/ships")
     Call<Ships> getShips(@Header("x-access-token") String token);
+
+    @GET("/api/v1/fleet/attack/{username}")
+    Call<Internal> attack(@Header("x-access-token") String token, @Path("username") String username, @Body Amount ships);
 
 }

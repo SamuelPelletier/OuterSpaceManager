@@ -1,4 +1,4 @@
-package com.example.pellesam.outerspacemanager;
+package com.example.pellesam.outerspacemanager.CustomActivity;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -11,6 +11,10 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.pellesam.outerspacemanager.Entity.Search;
+import com.example.pellesam.outerspacemanager.R;
+import com.example.pellesam.outerspacemanager.Service.OuterSpaceManager;
 
 import java.util.ArrayList;
 

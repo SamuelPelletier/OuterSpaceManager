@@ -1,10 +1,10 @@
-package com.example.pellesam.outerspacemanager;
+package com.example.pellesam.outerspacemanager.Entity;
 
 /**
- * Created by mac14 on 13/03/2017.
+ * Created by mac14 on 14/03/2017.
  */
 
-public class Search {
+public class Building {
 
     private Integer amountOfEffectByLevel;
     private Integer amountOfEffectLevel0;
@@ -19,7 +19,8 @@ public class Search {
     private Integer timeToBuildByLevel;
     private Integer timeToBuildLevel0;
 
-    public Search(Integer amountOfEffectByLevel, Integer amountOfEffectLevel0, boolean building, String effect, Integer gasCostByLevel, Integer gasCostLevel0, Integer level, Integer mineralCostByLevel, Integer mineralCostLevel0, String name, Integer timeToBuildByLevel, Integer timeToBuildLevel0) {
+
+    public Building(Integer amountOfEffectByLevel, Integer amountOfEffectLevel0, boolean building, String effect, Integer gasCostByLevel, Integer gasCostLevel0, Integer level, Integer mineralCostByLevel, Integer mineralCostLevel0, String name, Integer timeToBuildByLevel, Integer timeToBuildLevel0) {
         this.amountOfEffectByLevel = amountOfEffectByLevel;
         this.amountOfEffectLevel0 = amountOfEffectLevel0;
         this.building = building;
@@ -34,29 +35,30 @@ public class Search {
         this.timeToBuildLevel0 = timeToBuildLevel0;
     }
 
-    public Integer getGasCost(){
+    public Integer getGasCost() {
         Integer level = (this.level != null) ? this.level : 1;
         Integer result = this.getGasCostLevel0() + this.getGasCostByLevel() * level;
         return result;
     }
 
-    public Integer getMineralCost(){
+    public Integer getMineralCost() {
         Integer level = (this.level != null) ? this.level : 1;
         Integer result = this.getMineralCostLevel0() + this.getMineralCostByLevel() * level;
         return result;
     }
 
-    public Integer getTimeToBuild(){
+    public Integer getTimeToBuild() {
         Integer level = (this.level != null) ? this.level : 1;
         Integer result = this.timeToBuildLevel0 + this.timeToBuildByLevel * level;
         return result;
     }
 
-    public Integer getAmountEffect(){
+    public Integer getAmountEffect() {
         Integer level = (this.level != null) ? this.level : 1;
         Integer result = this.amountOfEffectLevel0 + this.amountOfEffectByLevel * level;
         return result;
     }
+
 
     public Integer getAmountOfEffectByLevel() {
         return amountOfEffectByLevel;

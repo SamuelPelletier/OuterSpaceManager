@@ -1,12 +1,10 @@
-package com.example.pellesam.outerspacemanager;
-
-import android.util.Log;
+package com.example.pellesam.outerspacemanager.Entity;
 
 /**
- * Created by mac14 on 07/03/2017.
+ * Created by mac14 on 13/03/2017.
  */
 
-public class Building {
+public class Search {
 
     private Integer amountOfEffectByLevel;
     private Integer amountOfEffectLevel0;
@@ -21,8 +19,7 @@ public class Building {
     private Integer timeToBuildByLevel;
     private Integer timeToBuildLevel0;
 
-
-    public Building(Integer amountOfEffectByLevel, Integer amountOfEffectLevel0, boolean building, String effect, Integer gasCostByLevel, Integer gasCostLevel0, Integer level, Integer mineralCostByLevel, Integer mineralCostLevel0, String name, Integer timeToBuildByLevel, Integer timeToBuildLevel0) {
+    public Search(Integer amountOfEffectByLevel, Integer amountOfEffectLevel0, boolean building, String effect, Integer gasCostByLevel, Integer gasCostLevel0, Integer level, Integer mineralCostByLevel, Integer mineralCostLevel0, String name, Integer timeToBuildByLevel, Integer timeToBuildLevel0) {
         this.amountOfEffectByLevel = amountOfEffectByLevel;
         this.amountOfEffectLevel0 = amountOfEffectLevel0;
         this.building = building;
@@ -60,7 +57,6 @@ public class Building {
         Integer result = this.amountOfEffectLevel0 + this.amountOfEffectByLevel * level;
         return result;
     }
-
 
     public Integer getAmountOfEffectByLevel() {
         return amountOfEffectByLevel;

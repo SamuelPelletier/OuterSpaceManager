@@ -59,7 +59,7 @@ public class CustomAdaptaterViewUsers extends ArrayAdapter<User> {
 
         number.setText("TOP : "+String.valueOf(userPosition));
         username.setText(users.get(position).getUsername());
-        points.setText(users.get(position).getPoints().toString());
+        points.setText(String.valueOf(users.get(position).getPoints()));
 
         return rowView;
     }

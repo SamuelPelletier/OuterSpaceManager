@@ -21,4 +21,14 @@ public class Ships {
     public Integer getSize(){
         return this.ships.size();
     }
+    
+    public Integer getNumberOfShip(){
+        Integer numberShip = 0;
+        for (Integer i = 0; i<this.getSize(); i++){
+            if(this.ships.get(i).getAmount() > 0){
+                numberShip += this.ships.get(i).getAmount();
+            }
+        }
+        return numberShip;
+    }
 }

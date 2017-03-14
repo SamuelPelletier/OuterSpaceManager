@@ -1,28 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/black">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum="1"
         android:background="@android:color/black">
-
-        <TextView
-            android:text="Chantier spatial"
-            android:layout_width="match_parent"
-            android:layout_height="49dp"
-            android:id="@+id/title"
-            android:gravity="center_vertical"
-            android:textColor="@android:color/holo_orange_dark"
-            android:textAlignment="center"
-            android:textSize="24sp" />
 
         <ListView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="467dp"
             android:id="@+id/listView" />
+
+        <Button
+            android:text="Attaquer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/button" />
     </LinearLayout>
 </LinearLayout>

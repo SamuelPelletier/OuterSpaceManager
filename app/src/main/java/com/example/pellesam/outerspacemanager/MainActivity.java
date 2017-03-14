@@ -84,7 +84,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
         boat.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent myIntent = new Intent(getApplicationContext(), FleetActivity.class);
                 startActivity(myIntent);
             }
         });

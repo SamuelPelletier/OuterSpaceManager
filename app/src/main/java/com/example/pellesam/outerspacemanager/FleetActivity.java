@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -20,14 +19,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by mac14 on 07/03/2017.
  */
 
-public class ShipActivity extends Activity {
+public class FleetActivity extends Activity {
 
     private ListView listView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ship);
+        setContentView(R.layout.activity_fleet);
         listView = (ListView) findViewById(R.id.listView);
 
         SharedPreferences settings = getSharedPreferences("TOKEN", 0);
@@ -38,13 +37,22 @@ public class ShipActivity extends Activity {
                 .build();
 
         OuterSpaceManager service = retrofit.create(OuterSpaceManager.class);
-        final Call<Ships> request = service.getShips(settings.getString("tokenId", "noToken"));
+        final Call<Ships> request = service.getFleet(settings.getString("tokenId", "noToken"));
         request.enqueue(new Callback<Ships>() {
 
             @Override
             public void onResponse(Call<Ships> call, Response<Ships> response) {
                 ArrayList<Ship> ships = response.body().getShips();
-                listView.setAdapter(new CustomAdaptaterViewShips(getApplicationContext(), ships));
+                if(response.body().getNumberOfShip() > 0) {
+                    listView.setAdapter(new CustomAdaptaterViewShipsFleet(getApplicationContext(), ships));
+                }else{
+                    CharSequence text = "Vous n'avez pas de vaisseau :(";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(getApplicationContext(), text, duration);
+                    toast.show();
+                    Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(myIntent);
+                }
             }
 
             @Override

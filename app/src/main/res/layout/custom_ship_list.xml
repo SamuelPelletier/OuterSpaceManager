@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1"
@@ -8,7 +10,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="178dp"
-        android:layout_height="match_parent"
+        android:layout_height="234dp"
         android:weightSum="1"
         android:background="@android:color/black"
         android:layout_marginLeft="20dp">
@@ -19,16 +21,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/name"
             android:textColor="@android:color/white"
-            android:layout_marginBottom="50dp"
+            android:layout_marginBottom="80dp"
             android:textSize="20sp" />
-
-        <TextView
-            android:text="Effet"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/effect"
-            android:textColor="@android:color/white"
-            android:layout_marginBottom="10dp" />
 
         <TextView
             android:text="Cout en gas"
@@ -36,7 +30,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/gasCost"
             android:textColor="@android:color/white"
-            android:layout_marginBottom="10dp" />
+            android:layout_marginBottom="20dp" />
 
         <TextView
             android:text="Cout en mineraux"
@@ -44,7 +38,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/mineralCost"
             android:textColor="@android:color/white"
-            android:layout_marginBottom="10dp" />
+            android:layout_marginBottom="20dp" />
 
         <TextView
             android:text="Temps de construction"
@@ -52,31 +46,46 @@
             android:layout_height="wrap_content"
             android:id="@+id/timeToBuild"
             android:textColor="@android:color/white"
-            android:layout_marginBottom="10dp" />
+            android:layout_marginBottom="20dp" />
 
     </LinearLayout>
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="236dp"
         android:background="@android:color/black"
         android:weightSum="1">
 
-        <TextView
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView11"
-            android:layout_weight="0.53" />
+            app:srcCompat="@color/colorAccent"
+            android:id="@+id/imageViewShip"
+            android:layout_weight="1.01"
+            android:layout_marginBottom="10dp"
+            android:padding="15dp" />
 
-        <TextView
-            android:text="Level"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/level"
-            android:textColor="@android:color/white"
-            android:textAlignment="center"
-            android:textSize="24sp" />
+            android:layout_height="43dp">
+
+            <TextView
+                android:text="Nombre :"
+                android:layout_width="66dp"
+                android:layout_height="match_parent"
+                android:id="@+id/textView2"
+                android:textColor="@android:color/white"
+                android:gravity="center_vertical|center" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/number" />
+        </LinearLayout>
 
         <Button
             android:text="Construire"

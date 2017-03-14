@@ -2,11 +2,13 @@ package com.example.pellesam.outerspacemanager;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +19,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
+import static android.view.View.GONE;
 
 /**
  * Created by mac14 on 07/03/2017.
@@ -56,6 +60,16 @@ public class CustomAdaptaterViewSearches extends ArrayAdapter<Search> implements
         }else{
             buttonBuild.setText("Rechercher");
             textViewLevel.setVisibility(View.GONE);
+        }
+
+        if (searches.get(position).isBuilding()){
+            LinearLayout buildingLayout = (LinearLayout) rowView.findViewById(R.id.buildingLayout);
+            Integer orange = Color.rgb(255,140,0);
+            buildingLayout.setBackgroundColor(orange);
+            buttonBuild.setVisibility(GONE);
+            textViewLevel.setVisibility(View.VISIBLE);
+            textViewLevel.setText("En amélioration vers le level "+(searches.get(position).getLevel() + 1));
+            textViewLevel.setTextColor(orange);
         }
 
         buttonBuild.setOnClickListener(new View.OnClickListener() {

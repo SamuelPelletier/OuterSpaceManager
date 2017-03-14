@@ -39,7 +39,7 @@ public class Building {
 
     public Integer getGasCost(){
         Integer level = (this.level != null) ? this.level : 1;
-        Integer result = this.getAmountOfEffectLevel0() + this.getAmountOfEffectByLevel() * level;
+        Integer result = this.getGasCostLevel0() + this.getGasCostByLevel() * level;
         return result;
     }
 

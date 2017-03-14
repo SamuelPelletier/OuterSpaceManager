@@ -3,7 +3,8 @@
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1"
-    android:background="@android:color/black">
+    android:background="@android:color/black"
+    android:id="@+id/buildingLayout">
 
     <LinearLayout
         android:orientation="vertical"
@@ -11,7 +12,8 @@
         android:layout_height="match_parent"
         android:weightSum="1"
         android:background="@android:color/black"
-        android:layout_marginLeft="20dp">
+        android:layout_marginLeft="20dp"
+        android:id="@+id/firstLayout">
 
         <TextView
             android:text="Name"
@@ -61,7 +63,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/black"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:id="@+id/secondLayout">
 
         <TextView
             android:layout_width="match_parent"

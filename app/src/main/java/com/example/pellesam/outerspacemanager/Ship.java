@@ -16,9 +16,10 @@ public class Ship {
     private Integer spatioportLevelNeeded;
     private Integer speed;
     private Integer timeToBuild;
+    private Integer amount;
 
 
-    public Ship(Integer gasCost, Integer life, Integer maxAttack, Integer minAttack, Integer mineralCost, String name, Integer shield, Integer spatioportLevelNeeded, Integer speed, Integer timeToBuild) {
+    public Ship(Integer gasCost, Integer life, Integer maxAttack, Integer minAttack, Integer mineralCost, String name, Integer shield, Integer spatioportLevelNeeded, Integer speed, Integer timeToBuild, Integer amount) {
         this.gasCost = gasCost;
         this.life = life;
         this.maxAttack = maxAttack;
@@ -29,6 +30,11 @@ public class Ship {
         this.spatioportLevelNeeded = spatioportLevelNeeded;
         this.speed = speed;
         this.timeToBuild = timeToBuild;
+        this.amount = amount;
+    }
+
+    public Ship(Integer amount){
+        this.amount = amount;
     }
 
     public Integer getGasCost() {
@@ -69,5 +75,9 @@ public class Ship {
 
     public Integer getTimeToBuild() {
         return timeToBuild;
+    }
+
+    public Integer getAmount() {
+        return amount;
     }
 }

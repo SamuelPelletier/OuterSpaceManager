@@ -8,7 +8,7 @@ public class User {
     private String username;
     private String password;
     private String token;
-    private Integer points;
+    private double points;
     private Double gas;
     private Integer gasModifier;
     private Double minerals;
@@ -27,7 +27,7 @@ public class User {
         return this.username;
     }
 
-    public Integer getPoints(){
+    public double getPoints(){
         return this.points;
     }
 

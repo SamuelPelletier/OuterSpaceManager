@@ -3,12 +3,14 @@ package com.example.pellesam.outerspacemanager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +22,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static android.view.View.GONE;
 import static com.example.pellesam.outerspacemanager.R.id.point;
 import static com.example.pellesam.outerspacemanager.R.id.username;
 
@@ -55,12 +58,22 @@ public class CustomAdaptaterViewBuildings extends ArrayAdapter<Building> impleme
         textViewGasCost.setText("Cout en gas : "+buildings.get(position).getGasCost());
         textViewMineralCost.setText("Cout en minéraux : "+buildings.get(position).getMineralCost());
         textViewTimeToBuild.setText("Temps de construction : "+buildings.get(position).getTimeToBuild());
-        if(buildings.get(position).isBuilding() || buildings.get(position).getLevel() > 1) {
+        if(buildings.get(position).getLevel() > 1) {
             buttonBuild.setText("Améliorer");
             textViewLevel.setText(buildings.get(position).getLevel().toString());
         }else{
             buttonBuild.setText("Construire");
-            textViewLevel.setVisibility(View.GONE);
+            textViewLevel.setVisibility(GONE);
+        }
+
+        if (buildings.get(position).isBuilding()){
+            LinearLayout buildingLayout = (LinearLayout) rowView.findViewById(R.id.buildingLayout);
+            Integer orange = Color.rgb(255,140,0);
+            buildingLayout.setBackgroundColor(orange);
+            buttonBuild.setVisibility(GONE);
+            textViewLevel.setVisibility(View.VISIBLE);
+            textViewLevel.setText("En amélioration vers le level "+(buildings.get(position).getLevel() + 1));
+            textViewLevel.setTextColor(orange);
         }
 
         buttonBuild.setOnClickListener(new View.OnClickListener() {

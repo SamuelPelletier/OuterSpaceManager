@@ -54,8 +54,8 @@ public class CustomAdaptaterViewReports extends ArrayAdapter<Report> {
         DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         String dateFormatted = formatter.format(dateReal);
         date.setText("Date de l'attaque: "+dateFormatted);
-        attackerFleetAfterBattle.setText("Vous avez perdu: "+String.valueOf(reports.get(position).getAttackerFleetAfterBattle().getSurvivingShips())+" vaisseau(x)");
-        defenderFleetAfterBattle.setText("Il lui reste: "+String.valueOf(reports.get(position).getDefenderFleetAfterBattle().getSurvivingShips())+" vaisseau(x)");
+        attackerFleetAfterBattle.setText("L'attaquant a perdu: "+String.valueOf(reports.get(position).getAttackerFleetAfterBattle().getSurvivingShips())+" vaisseau(x)");
+        defenderFleetAfterBattle.setText("Le défenseur a perdu: "+String.valueOf(reports.get(position).getDefenderFleetAfterBattle().getSurvivingShips())+" vaisseau(x)");
 
         return rowView;
     }

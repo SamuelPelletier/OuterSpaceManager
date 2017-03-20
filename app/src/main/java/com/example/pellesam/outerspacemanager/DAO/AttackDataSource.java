@@ -3,12 +3,12 @@ package com.example.pellesam.outerspacemanager.DAO;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.pellesam.outerspacemanager.DataBase.AttackDB;
 import com.example.pellesam.outerspacemanager.Entity.Attack;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,9 +61,8 @@ public class AttackDataSource {
     }
     private Attack cursorToAttack(Cursor cursor) {
         Attack comment = new Attack();
-        String result = cursor.getString(0);
-        comment.setTime(cursor.getLong(1));
-        comment.setFleetSend(cursor.getString(2));
+        comment.setTime(cursor.getLong(0));
+        comment.setFleetSend(cursor.getString(1));
         return comment;
     }
 

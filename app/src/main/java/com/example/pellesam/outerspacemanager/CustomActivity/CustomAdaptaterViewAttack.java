@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.pellesam.outerspacemanager.DAO.AttackDataSource;
+import com.example.pellesam.outerspacemanager.Entity.Attack;
 import com.example.pellesam.outerspacemanager.Entity.HttpResponse;
 import com.example.pellesam.outerspacemanager.Entity.Ship;
 import com.example.pellesam.outerspacemanager.Entity.Ships;
@@ -87,6 +89,10 @@ public class CustomAdaptaterViewAttack extends ArrayAdapter<User> implements Vie
                             Toast toast = Toast.makeText(context, text, duration);
                             toast.show();
                             Intent myIntent = new Intent(context, MainActivity.class);
+                            AttackDataSource attackDataSource = new AttackDataSource(getContext());
+                            attackDataSource.open();
+                            attackDataSource.createAttack(String.valueOf(response.body().getAttackTime()),"");
+                            attackDataSource.close();
                             context.startActivity(myIntent);
                         }else {
                             toast.show();

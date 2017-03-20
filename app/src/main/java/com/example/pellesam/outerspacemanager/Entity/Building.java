@@ -8,6 +8,7 @@ public class Building {
 
     private Integer amountOfEffectByLevel;
     private Integer amountOfEffectLevel0;
+    private Integer buildingId;
     private boolean building;
     private String effect;
     private Integer gasCostByLevel;
@@ -20,9 +21,10 @@ public class Building {
     private Integer timeToBuildLevel0;
 
 
-    public Building(Integer amountOfEffectByLevel, Integer amountOfEffectLevel0, boolean building, String effect, Integer gasCostByLevel, Integer gasCostLevel0, Integer level, Integer mineralCostByLevel, Integer mineralCostLevel0, String name, Integer timeToBuildByLevel, Integer timeToBuildLevel0) {
+    public Building(Integer amountOfEffectByLevel, Integer amountOfEffectLevel0,Integer buildingId, boolean building, String effect, Integer gasCostByLevel, Integer gasCostLevel0, Integer level, Integer mineralCostByLevel, Integer mineralCostLevel0, String name, Integer timeToBuildByLevel, Integer timeToBuildLevel0) {
         this.amountOfEffectByLevel = amountOfEffectByLevel;
         this.amountOfEffectLevel0 = amountOfEffectLevel0;
+        this.buildingId = buildingId;
         this.building = building;
         this.effect = effect;
         this.gasCostByLevel = gasCostByLevel;
@@ -66,6 +68,10 @@ public class Building {
 
     public Integer getAmountOfEffectLevel0() {
         return amountOfEffectLevel0;
+    }
+
+    public Integer getBuildingId() {
+        return buildingId;
     }
 
     public boolean isBuilding() {

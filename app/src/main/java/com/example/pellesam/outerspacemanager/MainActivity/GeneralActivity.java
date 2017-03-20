@@ -4,11 +4,20 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.pellesam.outerspacemanager.CustomActivity.CustomAdaptaterViewBuildings;
+import com.example.pellesam.outerspacemanager.CustomActivity.CustomAdaptaterViewReports;
+import com.example.pellesam.outerspacemanager.Entity.Building;
+import com.example.pellesam.outerspacemanager.Entity.Report;
+import com.example.pellesam.outerspacemanager.Entity.Reports;
 import com.example.pellesam.outerspacemanager.Entity.User;
 import com.example.pellesam.outerspacemanager.R;
 import com.example.pellesam.outerspacemanager.Service.OuterSpaceManager;
+
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,6 +35,7 @@ public class GeneralActivity extends Activity {
     private TextView gasModifier;
     private TextView minerals;
     private TextView mineralsModifier;
+    private ListView listView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,6 +45,7 @@ public class GeneralActivity extends Activity {
         gasModifier = (TextView) findViewById(R.id.gasModifier);
         minerals = (TextView) findViewById(R.id.minerals);
         mineralsModifier = (TextView) findViewById(R.id.mineralsModifier);
+        listView = (ListView) findViewById(R.id.listView);
 
         SharedPreferences settings = getSharedPreferences("TOKEN", 0);
 
@@ -44,8 +55,8 @@ public class GeneralActivity extends Activity {
                 .build();
 
         OuterSpaceManager service = retrofit.create(OuterSpaceManager.class);
-        final Call<User> request = service.getUser(settings.getString("tokenId", "noToken"));
-        request.enqueue(new Callback<User>() {
+        final Call<User> requestUsers = service.getUser(settings.getString("tokenId", "noToken"));
+        requestUsers.enqueue(new Callback<User>() {
 
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
@@ -57,6 +68,24 @@ public class GeneralActivity extends Activity {
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
+                Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(myIntent);
+            }
+        });
+
+        final Call<Reports> requestReports = service.getReports(settings.getString("tokenId", "noToken"),0,4);
+        requestReports.enqueue(new Callback<Reports>() {
+
+            @Override
+            public void onResponse(Call<Reports> call, Response<Reports> response) {
+                if(response.isSuccessful()) {
+                    ArrayList<Report> reports = response.body().getReports();
+                    listView.setAdapter(new CustomAdaptaterViewReports(getApplicationContext(), reports));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Reports> call, Throwable t) {
                 Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(myIntent);
             }

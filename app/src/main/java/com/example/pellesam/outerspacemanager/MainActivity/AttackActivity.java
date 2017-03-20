@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ListView;
 
 import com.example.pellesam.outerspacemanager.CustomActivity.CustomAdaptaterViewAttack;

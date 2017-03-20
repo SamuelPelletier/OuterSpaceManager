@@ -3,6 +3,7 @@ package com.example.pellesam.outerspacemanager.CustomActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.pellesam.outerspacemanager.Entity.Amount;
+import com.example.pellesam.outerspacemanager.Entity.HttpResponse;
 import com.example.pellesam.outerspacemanager.Entity.Ship;
 import com.example.pellesam.outerspacemanager.Entity.Ships;
 import com.example.pellesam.outerspacemanager.Entity.User;
@@ -20,7 +21,10 @@ import com.example.pellesam.outerspacemanager.R;
 import com.example.pellesam.outerspacemanager.Service.OuterSpaceManager;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
+import okhttp3.internal.Internal;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -52,8 +56,7 @@ public class CustomAdaptaterViewAttack extends ArrayAdapter<User> implements Vie
 
         TextView username = (TextView) rowView.findViewById(R.id.username);
         TextView points = (TextView) rowView.findViewById(R.id.points);
-        Button attack = (Button) rowView.findViewById(R.id.buttonAttack);
-
+        final Button attack = (Button) rowView.findViewById(R.id.buttonAttack);
         username.setText(users.get(position).getUsername());
         points.setText(String.valueOf(users.get(position).getPoints()));
 
@@ -64,24 +67,34 @@ public class CustomAdaptaterViewAttack extends ArrayAdapter<User> implements Vie
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
 
+                String username = users.get(position).getUsername();
+                ArrayList<Ship> fleet = new ArrayList<Ship>();
+                for(Integer i = 0;i<ships.getSize(); i++) {
+                    fleet.add(new Ship(ships.getShips().get(i).getShipId(), ships.getShips().get(i).getAmount()));
+                }
+
                 OuterSpaceManager service = retrofit.create(OuterSpaceManager.class);
-                Call<User> request = service.attack("ok", "bob", new Amount(1));
-                request.enqueue(new Callback<User>() {
+                final Call<HttpResponse> request = service.attack(sharedPreferences.getString("tokenId", "noToken"), username, new Ships(fleet));
+                request.enqueue(new Callback<HttpResponse>() {
                     CharSequence text = "Erreur de connexion";
                     int duration = Toast.LENGTH_SHORT;
                     Toast toast = Toast.makeText(context, text, duration);
 
                     @Override
-                    public void onResponse(Call<User> call, Response<User> response) {
-                        if(response.body() == null){
+                    public void onResponse(Call<HttpResponse> call, Response<HttpResponse> response) {
+                        if(response.isSuccessful()){
+                            CharSequence text = "Attaque envoyé !";
+                            Toast toast = Toast.makeText(context, text, duration);
                             toast.show();
-                        }else {
                             Intent myIntent = new Intent(context, MainActivity.class);
+                            context.startActivity(myIntent);
+                        }else {
+                            toast.show();
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<User> call, Throwable t) {
+                    public void onFailure(Call<HttpResponse> call, Throwable t) {
                         toast.show();
                     }
                 });

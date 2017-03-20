@@ -4,6 +4,15 @@
     android:layout_height="match_parent"
     android:background="@android:color/black">
 
+    <TextView
+        android:text="Ressource"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView14"
+        android:textColor="@android:color/holo_orange_dark"
+        android:textAlignment="center"
+        android:textSize="24sp" />
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -100,5 +109,19 @@
             android:textColorHighlight="@android:color/white"
             android:textColor="@android:color/white" />
     </LinearLayout>
+
+    <TextView
+        android:text="Rapport"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView13"
+        android:textSize="24sp"
+        android:textColor="@android:color/holo_orange_dark"
+        android:textAlignment="center" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/listView" />
 
 </LinearLayout>

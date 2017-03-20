@@ -1,9 +1,13 @@
 package com.example.pellesam.outerspacemanager.MainActivity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -47,6 +51,17 @@ public class MainActivity extends Activity implements View.OnClickListener{
         disconnect = (Button) findViewById(R.id.disconnect);
         username = (TextView) findViewById(R.id.username);
         point = (TextView) findViewById(R.id.point);
+
+        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+        {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+
+            } else {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
+            }
+        }
+
 
         SharedPreferences settings = getSharedPreferences("TOKEN", 0);
 

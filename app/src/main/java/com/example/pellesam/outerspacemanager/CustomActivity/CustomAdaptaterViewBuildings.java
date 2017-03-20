@@ -87,7 +87,7 @@ public class CustomAdaptaterViewBuildings extends ArrayAdapter<Building> impleme
                         .build();
 
                 OuterSpaceManager service = retrofit.create(OuterSpaceManager.class);
-                final Call<Building> request = service.constructBuilding(settings.getString("tokenId", "noToken"), position);
+                final Call<Building> request = service.constructBuilding(settings.getString("tokenId", "noToken"), buildings.get(position).getBuildingId());
                 request.enqueue(new Callback<Building>() {
 
                     @Override

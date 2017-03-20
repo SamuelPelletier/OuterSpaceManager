@@ -3,12 +3,17 @@ package com.example.pellesam.outerspacemanager.Service;
 import com.example.pellesam.outerspacemanager.Entity.Amount;
 import com.example.pellesam.outerspacemanager.Entity.Building;
 import com.example.pellesam.outerspacemanager.Entity.Buildings;
+import com.example.pellesam.outerspacemanager.Entity.HttpResponse;
+import com.example.pellesam.outerspacemanager.Entity.Report;
+import com.example.pellesam.outerspacemanager.Entity.Reports;
 import com.example.pellesam.outerspacemanager.Entity.Search;
 import com.example.pellesam.outerspacemanager.Entity.Searches;
 import com.example.pellesam.outerspacemanager.Entity.Ship;
 import com.example.pellesam.outerspacemanager.Entity.Ships;
 import com.example.pellesam.outerspacemanager.Entity.User;
 import com.example.pellesam.outerspacemanager.Entity.Users;
+
+import java.util.HashMap;
 
 import okhttp3.internal.Internal;
 import retrofit2.Call;
@@ -56,7 +61,10 @@ public interface OuterSpaceManager {
     @GET("/api/v1/ships")
     Call<Ships> getShips(@Header("x-access-token") String token);
 
-    @GET("/api/v1/fleet/attack/{username}")
-    Call<Internal> attack(@Header("x-access-token") String token, @Path("username") String username, @Body Amount ships);
+    @POST("/api/v1/fleet/attack/{username}")
+    Call<HttpResponse> attack(@Header("x-access-token") String token, @Path("username") String username, @Body Ships ships);
+
+    @GET("/api/v1/reports/{from}/{limit}")
+    Call<Reports> getReports(@Header("x-access-token") String token, @Path("from") Integer from, @Path("limit") Integer limit);
 
 }

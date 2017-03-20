@@ -1,11 +1,14 @@
 package com.example.pellesam.outerspacemanager.Entity;
 
+import java.io.Serializable;
+
 /**
  * Created by mac14 on 07/03/2017.
  */
 
-public class Ship {
+public class Ship implements Serializable{
 
+    private Integer shipId;
     private Integer gasCost;
     private Integer life;
     private Integer maxAttack;
@@ -30,6 +33,11 @@ public class Ship {
         this.spatioportLevelNeeded = spatioportLevelNeeded;
         this.speed = speed;
         this.timeToBuild = timeToBuild;
+        this.amount = amount;
+    }
+
+    public Ship(Integer shipId, Integer amount){
+        this.shipId = shipId;
         this.amount = amount;
     }
 
@@ -79,5 +87,9 @@ public class Ship {
 
     public Integer getAmount() {
         return amount;
+    }
+
+    public Integer getShipId() {
+        return shipId;
     }
 }

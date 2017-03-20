@@ -10,10 +10,11 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="176dp"
-        android:layout_height="152dp"
+        android:layout_height="230dp"
         android:weightSum="1"
         android:background="@android:color/black"
-        android:layout_marginLeft="20dp">
+        android:layout_marginLeft="20dp"
+        android:layout_weight="0.70">
 
         <TextView
             android:text="Name"
@@ -31,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/number"
-            android:layout_weight="0.65"
+            android:layout_weight="0.40"
             android:textAlignment="center"
             android:gravity="center_vertical"
             android:textColor="@android:color/holo_orange_dark"
@@ -39,13 +40,32 @@
             android:textStyle="bold"
             android:fontFamily="sans-serif-smallcaps" />
 
+        <TextView
+            android:text="Envoyé 0 vaisseau"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/sendShip"
+            android:layout_weight="0.09"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            android:textAlignment="center"
+            android:gravity="center_vertical" />
+
+        <SeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/seekBar"
+            style="@android:style/Widget.Material.Light.SeekBar"
+            android:layout_weight="0.11" />
+
     </LinearLayout>
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="156dp"
-        android:weightSum="1">
+        android:layout_width="203dp"
+        android:layout_height="226dp"
+        android:weightSum="1"
+        android:layout_weight="0.97">
 
         <ImageView
             android:layout_width="match_parent"

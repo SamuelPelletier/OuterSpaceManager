@@ -1,14 +1,17 @@
 package com.example.pellesam.outerspacemanager.CustomActivity;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +27,7 @@ import com.example.pellesam.outerspacemanager.R;
 import com.example.pellesam.outerspacemanager.Service.OuterSpaceManager;
 import com.google.gson.Gson;
 
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -36,6 +40,9 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static java.lang.Math.abs;
+import static java.lang.Math.toIntExact;
+
 /**
  * Created by mac14 on 13/03/2017.
  */
@@ -44,11 +51,14 @@ public class CustomAdaptaterViewReportAttacks extends ArrayAdapter<Attack>{
 
     private final Context context;
     private ArrayList<Attack> attacks;
+    private Handler handler;
+    private Gson gson;
     public CustomAdaptaterViewReportAttacks(Context context, ArrayList<Attack> attacks) {
         super(context, R.layout.custom_attack_report_list, attacks);
         this.context = context;
         this.attacks = attacks;
-
+        handler = new Handler();
+        gson = new Gson();
     }
 
     @Override
@@ -57,10 +67,8 @@ public class CustomAdaptaterViewReportAttacks extends ArrayAdapter<Attack>{
         View rowView = inflater.inflate(R.layout.custom_attack_report_list, parent, false);
 
         TextView to = (TextView) rowView.findViewById(R.id.to);
-        TextView percent = (TextView) rowView.findViewById(R.id.percent);
+        final TextView percent = (TextView) rowView.findViewById(R.id.percent);
         TextView fleet = (TextView) rowView.findViewById(R.id.fleet);
-
-        Gson gson = new Gson();
         Ships ships = gson.fromJson(attacks.get(position).getFleetSend(), Ships.class);
 
         String fleetString = "";
@@ -73,9 +81,25 @@ public class CustomAdaptaterViewReportAttacks extends ArrayAdapter<Attack>{
         final ProgressBar progressBar = (ProgressBar) rowView.findViewById(R.id.progressBar);
 
         to.setText("Vous avez attaqué: "+attacks.get(position).getUsername());
-        final Integer progress = Integer.parseInt(String.valueOf(((System.currentTimeMillis()-attacks.get(position).getEnd()))/((attacks.get(position).getEnd()-attacks.get(position).getBegin()))*100));
-        progressBar.setProgress(progress);
-        percent.setText(progress+"%");
+
+        Runnable runnable = new Runnable() {
+            @TargetApi(Build.VERSION_CODES.N)
+            @Override
+            public void run() {
+                long dureeAvantFin = (attacks.get(position).getEnd()-System.currentTimeMillis());
+                long dureeTotal  = (attacks.get(position).getEnd()-attacks.get(position).getBegin());
+                double dureeRestante = Double.valueOf(dureeAvantFin) / Double.valueOf(dureeTotal);
+                Integer progress = 100-toIntExact(Math.round(dureeRestante*100));
+                if(progress <= 100) {
+                    progressBar.setProgress(progress);
+                    percent.setText(progress + "%");
+                }
+                handler.postDelayed(this, 100);
+            }
+        };
+
+        handler.post(runnable);
+
 
 
         return rowView;

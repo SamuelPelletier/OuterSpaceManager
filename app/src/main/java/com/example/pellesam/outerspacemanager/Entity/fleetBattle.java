@@ -11,7 +11,7 @@ public class FleetBattle implements Serializable{
 
     private Integer capacity;
 
-    //private ArrayList<Ship> fleet;
+    private ArrayList<Ship> fleet;
 
     private Integer survivingShips;
 
@@ -24,9 +24,9 @@ public class FleetBattle implements Serializable{
         return capacity;
     }
 
-    //public ArrayList<Ship> getFleet() {
-    //    return fleet;
-    //}
+    public ArrayList<Ship> getFleet() {
+        return fleet;
+    }
 
     public Integer getSurvivingShips() {
         return survivingShips;

@@ -1,6 +1,7 @@
 package com.example.pellesam.outerspacemanager.MainActivity;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -92,6 +93,7 @@ public class GeneralActivity extends Activity implements View.OnClickListener{
 
             @Override
             public void onFailure(Call<Reports> call, Throwable t) {
+                Log.d("oki",t.getMessage().toString());
                 Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(myIntent);
             }

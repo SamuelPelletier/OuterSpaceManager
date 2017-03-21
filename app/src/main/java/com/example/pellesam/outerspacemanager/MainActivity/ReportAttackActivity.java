@@ -26,7 +26,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static java.lang.Math.abs;
+import static java.lang.Math.toIntExact;
 
 /**
  * Created by mac14 on 13/03/2017.
@@ -45,12 +45,18 @@ public class ReportAttackActivity extends Activity {
         listView = (ListView) findViewById(R.id.listView);
         ArrayList<Attack> attacks = attackDataSource.getAllAttacks();
         for(int i = 0; i< attacks.size(); i++) {
-            final Integer progress = Integer.parseInt(String.valueOf(((System.currentTimeMillis()-attacks.get(i).getEnd()) * 100)/(attacks.get(i).getEnd()-attacks.get(i).getBegin())));
-            if(abs(progress) >= 100) {
+            long dureeAvantFin = (attacks.get(i).getEnd()-System.currentTimeMillis());
+            long dureeTotal  = (attacks.get(i).getEnd()-attacks.get(i).getBegin());
+            double dureeRestante = Double.valueOf(dureeAvantFin) / Double.valueOf(dureeTotal);
+            Integer progress = 100-toIntExact(Math.round(dureeRestante*100));
+            if(progress >= 100) {
                 attackDataSource.deleteAttack(attacks.get(i));
             }
         }
+        attacks = attackDataSource.getAllAttacks();
         attackDataSource.close();
         listView.setAdapter(new CustomAdaptaterViewReportAttacks(getApplicationContext(), attacks));
     }
+
+
 }

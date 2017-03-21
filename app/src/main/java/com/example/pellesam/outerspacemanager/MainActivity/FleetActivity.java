@@ -26,6 +26,9 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static java.util.stream.Stream.empty;
+
+
 /**
  * Created by mac14 on 07/03/2017.
  */
@@ -64,26 +67,33 @@ public class FleetActivity extends Activity implements View.OnClickListener{
 
             @Override
             public void onResponse(Call<Ships> call, Response<Ships> response) {
-                ArrayList<Ship> ships = response.body().getShips();
+                final ArrayList<Ship> ships = response.body().getShips();
+                final Response<Ships> finalResponse = response;
                 if(response.body().getNumberOfShip() > 0) {
-                    if (response.body().getShips().get(2).getShipId() == 2){
-                        final Integer amountProbe = response.body().getShips().get(2).getAmount();
                     listView.setAdapter(new CustomAdaptaterViewShipsFleet(getApplicationContext(), ships, settings));
                     myIntentAttack.putExtra("fleet", response.body());
-
-                    ArrayList<Ship> arrayShip = new ArrayList<Ship>();
-                    arrayShip.add(new Ship(response.body().getShips().get(2).getShipId(),response.body().getShips().get(2).getName(), 1));
-                    final Ships shipsProbe = new Ships(arrayShip);
                     buttonProbe.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
-                            if (amountProbe > 0) {
-                                myIntentAttack.putExtra("fleet", shipsProbe);
-                                startActivity(myIntentAttack);
-                            } else {
-                                CharSequence text = "Vous n'avez pas de sonde :(";
-                                int duration = Toast.LENGTH_SHORT;
-                                Toast toast = Toast.makeText(getApplicationContext(), text, duration);
-                                toast.show();
+                            int positionProbe = -1;
+                            for(int i =0; i<ships.size(); i++){
+                                if(ships.get(i).getShipId() == 2) {
+                                    positionProbe = i;
+                                }
+                            }
+                            if (positionProbe != -1) {
+                                final Integer amountProbe = finalResponse.body().getShips().get(positionProbe).getAmount();
+                                if (amountProbe > 0) {
+                                    ArrayList<Ship> arrayShip = new ArrayList<Ship>();
+                                    arrayShip.add(new Ship(finalResponse.body().getShips().get(positionProbe).getShipId(),finalResponse.body().getShips().get(positionProbe).getName(), 1));
+                                    final Ships shipsProbe = new Ships(arrayShip);
+                                    myIntentAttack.putExtra("fleet", shipsProbe);
+                                    startActivity(myIntentAttack);
+                                } else {
+                                    CharSequence text = "Vous n'avez pas de sonde :(";
+                                    int duration = Toast.LENGTH_SHORT;
+                                    Toast toast = Toast.makeText(getApplicationContext(), text, duration);
+                                    toast.show();
+                                }
                             }
                         }
                     });
@@ -107,7 +117,6 @@ public class FleetActivity extends Activity implements View.OnClickListener{
                             startActivity(myIntentAttack);
                         }
                     });
-                }
                 }else{
                     CharSequence text = "Vous n'avez pas de vaisseau :(";
                     int duration = Toast.LENGTH_SHORT;

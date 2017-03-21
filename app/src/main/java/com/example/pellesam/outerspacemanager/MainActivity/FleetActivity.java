@@ -50,7 +50,9 @@ public class FleetActivity extends Activity implements View.OnClickListener{
         myIntentAttack = new Intent(getApplicationContext(), AttackActivity.class);
 
         final SharedPreferences settings = getSharedPreferences("TOKEN", 0);
-
+        SharedPreferences.Editor editor = settings.edit();
+        editor.remove("fleetSend");
+        editor.commit();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://outer-space-manager.herokuapp.com")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -64,26 +66,27 @@ public class FleetActivity extends Activity implements View.OnClickListener{
             public void onResponse(Call<Ships> call, Response<Ships> response) {
                 ArrayList<Ship> ships = response.body().getShips();
                 if(response.body().getNumberOfShip() > 0) {
-                    final Integer amountProbe = response.body().getShips().get(2).getAmount();
+                    if (response.body().getShips().get(2).getShipId() == 2){
+                        final Integer amountProbe = response.body().getShips().get(2).getAmount();
                     listView.setAdapter(new CustomAdaptaterViewShipsFleet(getApplicationContext(), ships, settings));
                     myIntentAttack.putExtra("fleet", response.body());
 
-                        ArrayList<Ship> arrayShip = new ArrayList<Ship>();
-                        arrayShip.add(new Ship(2,1));
-                        final Ships shipsProbe = new Ships(arrayShip);
-                        buttonProbe.setOnClickListener(new View.OnClickListener() {
-                            public void onClick(View v ) {
-                                if(amountProbe > 0) {
-                                myIntentAttack.putExtra("fleet",shipsProbe);
+                    ArrayList<Ship> arrayShip = new ArrayList<Ship>();
+                    arrayShip.add(new Ship(response.body().getShips().get(2).getShipId(),response.body().getShips().get(2).getName(), 1));
+                    final Ships shipsProbe = new Ships(arrayShip);
+                    buttonProbe.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
+                            if (amountProbe > 0) {
+                                myIntentAttack.putExtra("fleet", shipsProbe);
                                 startActivity(myIntentAttack);
-                                }else{
-                                    CharSequence text = "Vous n'avez pas de sonde :(";
-                                    int duration = Toast.LENGTH_SHORT;
-                                    Toast toast = Toast.makeText(getApplicationContext(), text, duration);
-                                    toast.show();
-                                }
+                            } else {
+                                CharSequence text = "Vous n'avez pas de sonde :(";
+                                int duration = Toast.LENGTH_SHORT;
+                                Toast toast = Toast.makeText(getApplicationContext(), text, duration);
+                                toast.show();
                             }
-                        });
+                        }
+                    });
                     buttonFullAttack.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
                             startActivity(myIntentAttack);
@@ -91,18 +94,20 @@ public class FleetActivity extends Activity implements View.OnClickListener{
                     });
                     buttonLimitedAttack.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
-                            String sendFleet = settings.getString("fleetSend", "[0;0],[1;0],[2;0],[3;0],[4;0]");
+                            String sendFleet = settings.getString("fleetSend", "[0;null;0],[1;null;0],[2;null;0],[3;null;0],[4;null;0]");
                             String[] fleet = sendFleet.split(",");
-                            ArrayList<Ship> ships =  new ArrayList<Ship>();
-                            for(int i=0;i<fleet.length; i++ ){
+                            ArrayList<Ship> ships = new ArrayList<Ship>();
+                            for (int i = 0; i < fleet.length; i++) {
                                 Integer id = Integer.valueOf(String.valueOf(fleet[i].charAt(1)));
-                                Integer amount = Integer.valueOf(String.valueOf(fleet[i].charAt(3)));
-                                ships.add(new Ship(id, amount));
+                                Integer amount = Integer.valueOf(String.valueOf(fleet[i].charAt(fleet[i].length()-2)));
+                                String name = String.valueOf(fleet[i].substring(3,fleet[i].length()-3));
+                                ships.add(new Ship(id,name, amount));
                             }
                             myIntentAttack.putExtra("fleet", new Ships(ships));
                             startActivity(myIntentAttack);
                         }
                     });
+                }
                 }else{
                     CharSequence text = "Vous n'avez pas de vaisseau :(";
                     int duration = Toast.LENGTH_SHORT;

@@ -41,6 +41,12 @@ public class Ship implements Serializable{
         this.amount = amount;
     }
 
+    public Ship(Integer shipId,String name, Integer amount){
+        this.shipId = shipId;
+        this.name = name;
+        this.amount = amount;
+    }
+
     public Ship(Integer amount){
         this.amount = amount;
     }

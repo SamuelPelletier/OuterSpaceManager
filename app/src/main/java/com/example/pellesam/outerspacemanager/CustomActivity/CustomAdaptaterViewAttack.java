@@ -21,7 +21,9 @@ import com.example.pellesam.outerspacemanager.Entity.User;
 import com.example.pellesam.outerspacemanager.MainActivity.MainActivity;
 import com.example.pellesam.outerspacemanager.R;
 import com.example.pellesam.outerspacemanager.Service.OuterSpaceManager;
+import com.google.gson.Gson;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -69,7 +71,7 @@ public class CustomAdaptaterViewAttack extends ArrayAdapter<User> implements Vie
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
 
-                String username = users.get(position).getUsername();
+                final String username = users.get(position).getUsername();
                 ArrayList<Ship> fleet = new ArrayList<Ship>();
                 for(Integer i = 0;i<ships.getSize(); i++) {
                     fleet.add(new Ship(ships.getShips().get(i).getShipId(), ships.getShips().get(i).getAmount()));
@@ -91,7 +93,8 @@ public class CustomAdaptaterViewAttack extends ArrayAdapter<User> implements Vie
                             Intent myIntent = new Intent(context, MainActivity.class);
                             AttackDataSource attackDataSource = new AttackDataSource(getContext());
                             attackDataSource.open();
-                            attackDataSource.createAttack(String.valueOf(response.body().getAttackTime()),"");
+                            Gson gson = new Gson();
+                            attackDataSource.createAttack(String.valueOf(System.currentTimeMillis()),String.valueOf(response.body().getAttackTime()), username,gson.toJson(ships).toString());
                             attackDataSource.close();
                             context.startActivity(myIntent);
                         }else {

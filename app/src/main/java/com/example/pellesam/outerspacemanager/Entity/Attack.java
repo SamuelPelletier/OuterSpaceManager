@@ -9,31 +9,53 @@ import java.security.Timestamp;
 
 public class Attack implements Serializable{
 
-    private long time;
+    private long begin;
+
+    private long end;
+
+    private String username;
 
     private String fleetSend;
 
-    public Attack(long time, String fleetSend) {
-        this.time = time;
+    public Attack(long begin,long end,String username, String fleetSend) {
+        this.begin = begin;
+        this.end = end;
+        this.username = username;
         this.fleetSend = fleetSend;
     }
 
     public Attack() {
     }
 
-    public long getTime() {
-        return time;
+    public long getBegin() {
+        return begin;
+    }
+
+    public long getEnd() {
+        return end;
     }
 
     public String getFleetSend() {
         return fleetSend;
     }
 
-    public void setTime(long time) {
-        this.time = time;
+    public String getUsername() {
+        return username;
+    }
+
+    public void setBegin(long begin) {
+        this.begin = begin;
+    }
+
+    public void setEnd(long end) {
+        this.end = end;
     }
 
     public void setFleetSend(String fleetSend) {
         this.fleetSend = fleetSend;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

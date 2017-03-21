@@ -13,16 +13,18 @@ public class AttackDB extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "MyDB.db";
     public static final String ATTACK_TABLE_NAME = "Attack";
-    public static final String TIME = "timestamp";
+    public static final String BEGIN_ATTACK = "begin";
+    public static final String END_ATTACK = "end";
+    public static final String USERNAME = "username";
     public static final String FLEET_SEND = "fleet";
-    private static final String HOMME_TABLE_CREATE = "CREATE TABLE " + ATTACK_TABLE_NAME + " (" + TIME + " REAL, " +
+    private static final String ATTACK_TABLE_CREATE = "CREATE TABLE " + ATTACK_TABLE_NAME + " (" + BEGIN_ATTACK + " REAL, " + END_ATTACK + " REAL, " + USERNAME + " TEXT, " +
             FLEET_SEND + " TEXT);";
     public AttackDB(Context context) {
         super(context, Environment.getExternalStorageDirectory()+"/"+DATABASE_NAME, null, DATABASE_VERSION);
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(HOMME_TABLE_CREATE);
+        db.execSQL(ATTACK_TABLE_CREATE);
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {db.execSQL("DROP TABLE IF EXISTS " +

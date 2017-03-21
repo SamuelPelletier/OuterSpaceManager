@@ -49,6 +49,10 @@
             android:name="com.example.pellesam.outerspacemanager.MainActivity.AttackActivity"
             android:label="@string/app_name" >
         </activity>
+        <activity
+            android:name="com.example.pellesam.outerspacemanager.MainActivity.ReportAttackActivity"
+            android:label="@string/app_name" >
+        </activity>
 
     </application>
     <uses-permission android:name="android.permission.INTERNET" />

@@ -69,9 +69,9 @@ public class CustomAdaptaterViewShipsFleet extends ArrayAdapter<Ship> {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                String sendFleet = sharedPreferences.getString("fleetSend", "[0;0],[1;0],[2;0],[3;0],[4;0]");
+                String sendFleet = sharedPreferences.getString("fleetSend", "[0;null;0],[1;null;0],[2;null;0],[3;null;0],[4;null;0]");
                 String[] fleet = sendFleet.split(",");
-                fleet[position] = "["+ships.get(position).getShipId()+";"+seekBar.getProgress()+"]";
+                fleet[position] = "["+ships.get(position).getShipId()+";"+ships.get(position).getName()+";"+seekBar.getProgress()+"]";
                 StringBuilder sb = new StringBuilder();
                 for (int i = 0; i < fleet.length; i++) {
                     sb.append(fleet[i]).append(",");

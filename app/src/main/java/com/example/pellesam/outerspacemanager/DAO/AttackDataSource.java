@@ -20,7 +20,7 @@ public class AttackDataSource {
     // Database fields
     private SQLiteDatabase database;
     private AttackDB dbHelper;
-    private String[] allColumns = { AttackDB.TIME,AttackDB.FLEET_SEND};
+    private String[] allColumns = { AttackDB.BEGIN_ATTACK,AttackDB.END_ATTACK,AttackDB.USERNAME,AttackDB.FLEET_SEND};
     public AttackDataSource(Context context) {
         dbHelper = new AttackDB(context);
     }
@@ -31,14 +31,16 @@ public class AttackDataSource {
         dbHelper.close();
     }
 
-    public Attack createAttack(String time, String fleetSend) {
+    public Attack createAttack(String begin,String end,String username, String fleetSend) {
         ContentValues values = new ContentValues();
-        values.put(AttackDB.TIME, time);
+        values.put(AttackDB.BEGIN_ATTACK, begin);
+        values.put(AttackDB.END_ATTACK, end);
+        values.put(AttackDB.USERNAME, username);
         values.put(AttackDB.FLEET_SEND, fleetSend);
         database.insert(AttackDB.ATTACK_TABLE_NAME, null,
                 values);
         Cursor cursor = database.query(AttackDB.ATTACK_TABLE_NAME,
-                allColumns, AttackDB.TIME + " = \"" +time+"\"", null,
+                allColumns, AttackDB.END_ATTACK + " = \"" +end+"\"", null,
                 null, null, null);
         cursor.moveToFirst();
         Attack newAttack = cursorToAttack(cursor);
@@ -46,8 +48,8 @@ public class AttackDataSource {
         return newAttack;
     }
 
-    public List<Attack> getAllAttacks() {
-        List<Attack> attacks = new ArrayList<Attack>();
+    public ArrayList<Attack> getAllAttacks() {
+        ArrayList<Attack> attacks = new ArrayList<Attack>();
         Cursor cursor = database.query(AttackDB.ATTACK_TABLE_NAME,
                 allColumns, null, null, null, null, null);
         cursor.moveToFirst();
@@ -59,15 +61,19 @@ public class AttackDataSource {
         cursor.close();
         return attacks;
     }
+
+
     private Attack cursorToAttack(Cursor cursor) {
         Attack comment = new Attack();
-        comment.setTime(cursor.getLong(0));
-        comment.setFleetSend(cursor.getString(1));
+        comment.setBegin(cursor.getLong(0));
+        comment.setEnd(cursor.getLong(1));
+        comment.setUsername(cursor.getString(2));
+        comment.setFleetSend(cursor.getString(3));
         return comment;
     }
 
     public void deleteAttack(Attack attack) {
-        database.delete(AttackDB.ATTACK_TABLE_NAME, AttackDB.TIME
-                + " = \"" + String.valueOf(attack.getTime())+"\"", null);
+        database.delete(AttackDB.ATTACK_TABLE_NAME, AttackDB.END_ATTACK
+                + " = \"" + String.valueOf(attack.getEnd())+"\"", null);
     }
 }

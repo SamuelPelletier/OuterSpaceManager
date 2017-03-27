@@ -40,22 +40,15 @@ public class CustomAdaptaterViewReports extends ArrayAdapter<Report> {
 
         TextView to = (TextView) rowView.findViewById(R.id.to);
         TextView from = (TextView) rowView.findViewById(R.id.from);
-        TextView gasWon = (TextView) rowView.findViewById(R.id.gasWon);
-        TextView mineralsWon = (TextView) rowView.findViewById(R.id.mineralsWon);
         TextView date = (TextView) rowView.findViewById(R.id.date);
-        TextView attackerFleetAfterBattle = (TextView) rowView.findViewById(R.id.attackerFleetAfterBattle);
-        TextView defenderFleetAfterBattle = (TextView) rowView.findViewById(R.id.defenderFleetAfterBattle);
 
-        from.setText("Attaquant: "+reports.get(position).getFrom());
-        to.setText("Défenseur: "+reports.get(position).getTo());
-        gasWon.setText("Gas volé: "+String.valueOf(reports.get(position).getGasWon()));
-        mineralsWon.setText("Mineral volé: "+String.valueOf(reports.get(position).getMineralsWon()));
         Date dateReal = new Date(reports.get(position).getDate());
         DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         String dateFormatted = formatter.format(dateReal);
-        date.setText("Date de l'attaque: "+dateFormatted);
-        attackerFleetAfterBattle.setText("L'attaquant dispose d'encore: "+String.valueOf(reports.get(position).getAttackerFleetAfterBattle().getSurvivingShips())+" vaisseau(x)");
-        defenderFleetAfterBattle.setText("Le défenseur dispose d'encore: "+String.valueOf(reports.get(position).getDefenderFleetAfterBattle().getSurvivingShips())+" vaisseau(x)");
+
+        from.setText("Attaquant: "+reports.get(position).getFrom());
+        to.setText("Défenseur: "+reports.get(position).getTo());
+        date.setText("Date d'attaque: "+dateFormatted);
 
         return rowView;
     }

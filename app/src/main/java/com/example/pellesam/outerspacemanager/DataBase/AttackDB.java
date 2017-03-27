@@ -10,7 +10,7 @@ import android.os.Environment;
  */
 
 public class AttackDB extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     private static final String DATABASE_NAME = "MyDB.db";
     public static final String ATTACK_TABLE_NAME = "Attack";
     public static final String BEGIN_ATTACK = "begin";

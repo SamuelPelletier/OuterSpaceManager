@@ -7,10 +7,16 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="match_parent"
+        android:layout_width="354dp"
         android:layout_height="match_parent"
-        android:layout_weight="0.89"
         android:background="@android:color/black">
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/blankTop"
+            android:layout_weight="0.17" />
 
         <TextView
             android:layout_width="match_parent"
@@ -29,20 +35,6 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/gasWon"
-            android:layout_weight="0.21"
-            android:textColor="@android:color/white" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/mineralsWon"
-            android:layout_weight="0.19"
-            android:textColor="@android:color/white" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/date"
             android:layout_weight="0.16"
             android:textColor="@android:color/white" />
@@ -50,22 +42,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/attackerFleetAfterBattle"
-            android:layout_weight="0.16"
-            android:textColor="@android:color/white" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/defenderFleetAfterBattle"
-            android:layout_weight="0.17"
-            android:textColor="@android:color/white" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/blank"
+            android:id="@+id/blankBottom"
             android:layout_weight="0.17" />
+
     </LinearLayout>
 
 </LinearLayout>

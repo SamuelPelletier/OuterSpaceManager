@@ -30,11 +30,13 @@ public class SignUpActivity extends Activity implements View.OnClickListener{
     private Button btnConnect;
     private EditText fieldId;
     private EditText fieldPassword;
+    private EditText fieldEmail;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         SharedPreferences settings = getSharedPreferences("TOKEN", 0);
-        if (settings.getString("tokenId", "noToken") != "noToken"){
+        String token = settings.getString("tokenId", "noToken");
+        if (!settings.getString("tokenId", "noToken").equals("noToken")){
             Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(myIntent);
         }
@@ -44,6 +46,7 @@ public class SignUpActivity extends Activity implements View.OnClickListener{
         btnConnect = (Button) findViewById(R.id.buttonConnect);
         fieldId = (EditText) findViewById(R.id.FieldId);
         fieldPassword = (EditText) findViewById(R.id.FieldPassword);
+        fieldEmail = (EditText) findViewById(R.id.fieldEmail);
         btnCreate.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Retrofit retrofit = new Retrofit.Builder()
@@ -52,7 +55,7 @@ public class SignUpActivity extends Activity implements View.OnClickListener{
                         .build();
 
                 OuterSpaceManager service = retrofit.create(OuterSpaceManager.class);
-                Call<User> request = service.createUser(new User(fieldId.getText().toString(), fieldPassword.getText().toString()));
+                Call<User> request = service.createUser(new User(fieldId.getText().toString(), fieldPassword.getText().toString(), fieldEmail.getText().toString()));
                 request.enqueue(new Callback<User>() {
                     Context context = getApplicationContext();
                     CharSequence text = "Erreur de création";
@@ -61,15 +64,17 @@ public class SignUpActivity extends Activity implements View.OnClickListener{
 
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
-                        if(response.body() == null){
-                            toast.show();
-                        }else {
-                            SharedPreferences settings = getSharedPreferences("TOKEN", 0);
-                            SharedPreferences.Editor editor = settings.edit();
-                            editor.putString("tokenId", response.body().getToken());
-                            editor.commit();
-                            Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
-                            startActivity(myIntent);
+                        if (response.isSuccessful()) {
+                            if (response.body() == null) {
+                                toast.show();
+                            } else {
+                                SharedPreferences settings = getSharedPreferences("TOKEN", 0);
+                                SharedPreferences.Editor editor = settings.edit();
+                                editor.putString("tokenId", response.body().getToken());
+                                editor.commit();
+                                Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
+                                startActivity(myIntent);
+                            }
                         }
                     }
 
@@ -98,6 +103,7 @@ public class SignUpActivity extends Activity implements View.OnClickListener{
 
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
+                        if (response.isSuccessful()) {
                         if(response.body() == null){
                             toast.show();
                         }else {
@@ -109,6 +115,8 @@ public class SignUpActivity extends Activity implements View.OnClickListener{
                             startActivity(myIntent);
                         }
                     }
+                    }
+
 
                     @Override
                     public void onFailure(Call<User> call, Throwable t) {

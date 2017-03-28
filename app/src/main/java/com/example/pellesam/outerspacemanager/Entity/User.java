@@ -5,6 +5,7 @@ package com.example.pellesam.outerspacemanager.Entity;
  */
 
 public class User {
+    private String email;
     private String username;
     private String password;
     private String token;
@@ -19,8 +20,18 @@ public class User {
         this.password = password;
     }
 
+    public User(String username, String password, String email) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+    }
+
     public String getToken(){
         return this.token;
+    }
+
+    public String getEmail(){
+        return this.email;
     }
 
     public String getUsername(){

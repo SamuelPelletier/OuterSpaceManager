@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -76,8 +77,13 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                username.setText(response.body().getUsername());
-                point.setText("Points: "+response.body().getPoints());
+                if(response.isSuccessful()) {
+                    username.setText(response.body().getUsername());
+                    point.setText("Points: " + response.body().getPoints());
+                }else{
+                    Intent myIntent = new Intent(getApplicationContext(), SignUpActivity.class);
+                    startActivity(myIntent);
+                }
             }
 
             @Override

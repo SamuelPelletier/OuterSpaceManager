@@ -62,7 +62,6 @@ public class AttackDataSource {
         return attacks;
     }
 
-
     private Attack cursorToAttack(Cursor cursor) {
         Attack comment = new Attack();
         comment.setBegin(cursor.getLong(0));

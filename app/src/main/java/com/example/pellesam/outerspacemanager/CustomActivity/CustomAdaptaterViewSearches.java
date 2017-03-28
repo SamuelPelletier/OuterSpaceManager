@@ -58,7 +58,7 @@ public class CustomAdaptaterViewSearches extends ArrayAdapter<Search> implements
         textViewGasCost.setText("Cout en gas : "+searches.get(position).getGasCost());
         textViewMineralCost.setText("Cout en minéraux : "+searches.get(position).getMineralCost());
         textViewTimeToBuild.setText("Temps de construction : "+searches.get(position).getTimeToBuild());
-        if(searches.get(position).isBuilding() || searches.get(position).getLevel() > 1) {
+        if((searches.get(position).isBuilding() || searches.get(position).getLevel().equals(1)) && searches.get(position).getLevel() != null) {
             buttonBuild.setText("Améliorer");
             textViewLevel.setText(searches.get(position).getLevel().toString());
         }else{
@@ -72,7 +72,11 @@ public class CustomAdaptaterViewSearches extends ArrayAdapter<Search> implements
             buildingLayout.setBackgroundColor(orange);
             buttonBuild.setVisibility(GONE);
             textViewLevel.setVisibility(View.VISIBLE);
-            textViewLevel.setText("En amélioration vers le level "+(searches.get(position).getLevel() + 1));
+            if(searches.get(position).getLevel() != null) {
+                textViewLevel.setText("En amélioration vers le level " + (searches.get(position).getLevel() + 1));
+            }else{
+                textViewLevel.setText("En amélioration vers le level 1");
+            }
             textViewLevel.setTextColor(orange);
         }
 

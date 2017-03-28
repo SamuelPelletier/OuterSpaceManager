@@ -59,7 +59,7 @@ public class CustomAdaptaterViewBuildings extends ArrayAdapter<Building> impleme
         textViewGasCost.setText("Cout en gas : "+buildings.get(position).getGasCost());
         textViewMineralCost.setText("Cout en minéraux : "+buildings.get(position).getMineralCost());
         textViewTimeToBuild.setText("Temps de construction : "+buildings.get(position).getTimeToBuild());
-        if(buildings.get(position).getLevel() > 1) {
+        if(buildings.get(position).getLevel() != null && buildings.get(position).getLevel().equals(1)) {
             buttonBuild.setText("Améliorer");
             textViewLevel.setText(buildings.get(position).getLevel().toString());
         }else{
@@ -73,7 +73,11 @@ public class CustomAdaptaterViewBuildings extends ArrayAdapter<Building> impleme
             buildingLayout.setBackgroundColor(orange);
             buttonBuild.setVisibility(GONE);
             textViewLevel.setVisibility(View.VISIBLE);
-            textViewLevel.setText("En amélioration vers le level "+(buildings.get(position).getLevel() + 1));
+            if(buildings.get(position).getLevel() != null) {
+                textViewLevel.setText("En amélioration vers le level " + (buildings.get(position).getLevel() + 1));
+            }else{
+                textViewLevel.setText("En amélioration vers le level 1");
+            }
             textViewLevel.setTextColor(orange);
         }
 
